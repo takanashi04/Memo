@@ -4,8 +4,8 @@ require "csv" #CSVファイルを扱うためのライブラリ
 def new_memo
   puts "タイトルを入力してください"
   title = gets.chomp
-  puts "本文を入力してください"
-  content = gets.chomp
+  puts "本文を入力してください / 終了する場合はctrl + Dを押してください"
+  content = STDIN.read.chomp
   CSV.open("#{title}.csv","w") do |csv|
     csv << ["#{content}"]
   end
@@ -15,8 +15,8 @@ end
 def edit_memo
   puts "編集したいタイトルを入力してください"
   title = gets.chomp
-  puts "本文を入力してください"
-  content = gets.chomp
+  puts "追記する本文を入力してください / 終了する場合はctrl + Dを押してください"
+  content = STDIN.read.chomp
   CSV.open("#{title}.csv","a") do |csv|
     csv << ["#{content}"]
   end
